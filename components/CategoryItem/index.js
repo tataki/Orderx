@@ -14,7 +14,7 @@ export default class CategoryItem extends React.Component {
     return (
       <TouchableHighlight
         onPress={() => {
-          this.props.navigation.navigate('Foods');
+          this.props.navigation.navigate('Foods', { category_id: item.id });
         }}
       >
         <View style={styles.container}>

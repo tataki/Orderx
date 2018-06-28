@@ -1,4 +1,7 @@
-import { createStackNavigator,createBottomTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from 'react-navigation';
 import Category from '../container/Category';
 import CheckOut from '../container/CheckOut';
 import Foods from '../container/Foods';
@@ -12,20 +15,19 @@ import Home from '../container/Home';
 // })
 
 export default createStackNavigator({
-  Home:{
-    screen:Home,
-    navigationOptions:()=>({
-      title:'开始点餐'
+  Home: {
+    screen: Home,
+    navigationOptions: () => ({
+      title: '开始点餐'
     })
   },
-  Category:{
-    screen:Category
+  Category: {
+    screen: Category
   },
-  CheckOut:{
-    screen:CheckOut
+  CheckOut: {
+    screen: CheckOut
   },
-  Foods:{
-    screen:Foods
+  Foods: {
+    screen: Foods
   }
-})
-
+});
