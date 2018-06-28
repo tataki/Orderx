@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { Grid, Content, Col } from 'native-base';
 import { getFoods } from '../services/FoodsService';
+import FoodItem from '../components/FoodItem';
 export default class Foods extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,30 @@ export default class Foods extends React.Component {
       foods: []
     };
   }
-
+  renderFoods() {
+    let items = [];
+    let stateItems = this.state.foods;
+    console.log('渲染');
+    console.log(stateItems);
+    for (var i = 0; i < stateItems.length; i += 2) {
+      if (stateItems[i + 1]) {
+        items.push(
+          <Grid key={i}>
+            <FoodItem data={stateItems[i]} />
+            <FoodItem data={stateItems[i + 1]} isRight />
+          </Grid>
+        );
+      } else {
+        items.push(
+          <Grid key={i}>
+            <FoodItem data={stateItems[i]} />
+            <Col key={i + 1} />
+          </Grid>
+        );
+      }
+    }
+    return items;
+  }
   componentDidMount() {
     getFoods(this.props.navigation.state.params.category_id).then(data => {
       this.setState({
@@ -19,16 +44,6 @@ export default class Foods extends React.Component {
   }
   render() {
     console.log(this.state.foods);
-    return (
-      <View>
-        <FlatList
-          data={this.state.foods}
-          renderItem={({ item }) => {
-            return <Text>{item.name}</Text>;
-          }}
-          keyExtractor={(itme, index) => index.toString()}
-        />
-      </View>
-    );
+    return <Content>{this.renderFoods()}</Content>;
   }
 }
