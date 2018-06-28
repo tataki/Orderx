@@ -1,4 +1,12 @@
-import Rect from 'react';
-import {View} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 
-export default class Catory extends 
+export default class Category extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text>Category</Text>
+      </View>
+    )
+  }
+}
