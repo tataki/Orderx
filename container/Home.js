@@ -31,6 +31,7 @@ class Home extends React.Component {
   submitButtonHandler = () => {
     this.props.setTable(this.state.table_num);
     this.props.navigation.navigate('Category');
+    this.refs.inputModal.close();
   };
 
   render() {
@@ -38,13 +39,7 @@ class Home extends React.Component {
       <Content>
         <View>
           <TouchableOpacity>
-            <View
-              style={styles.container}
-              button={true}
-              onPress={() => {
-                alert('onpress');
-              }}
-            >
+            <View style={styles.container}>
               <Image
                 style={styles.img}
                 source={{
