@@ -1,8 +1,8 @@
 const apiPostTalbe = 'http://127.0.0.1:8000/tables/';
 
-export function getTableNumber(data) {
+export function setTable(data) {
   return {
-    type: 'GETTABLENUMBER',
+    type: 'set_table',
     payload: data
   };
 }
@@ -20,7 +20,7 @@ export function postTableNumber(table_number) {
         return res.json();
       })
       .then(data => {
-        return data;
+        dispatch(setTable(data));
       });
   };
 }

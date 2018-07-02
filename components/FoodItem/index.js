@@ -4,8 +4,6 @@ import { View, Col, Card, CardItem, Body, Button, Text } from 'native-base';
 
 export default class FoodItem extends Component {
   render() {
-    console.log('传入item');
-    console.log(this.props);
     return (
       <Col style={this.props.isRight ? style.leftMargin : style.rightMargin}>
         <Card transparent>
@@ -13,7 +11,11 @@ export default class FoodItem extends Component {
             <Button
               transparent
               style={style.button}
-              onPress={() => this.pressed()}
+              onPress={() => {
+                this.props.navigation.navigate('FoodDetail', {
+                  food: this.props.data
+                });
+              }}
             >
               <Image
                 source={{ uri: this.props.data.goods_front_image }}
@@ -32,7 +34,6 @@ export default class FoodItem extends Component {
                 paddingTop: 0
               }}
               transparent
-              onPress={() => this.pressed()}
             >
               <Body>
                 <Text style={{ fontSize: 16 }} numberOfLines={1}>
