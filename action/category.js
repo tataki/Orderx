@@ -17,6 +17,9 @@ export function getCartFood(table) {
       })
       .then(data => {
         dispatch(cartFood(data));
+      })
+      .catch(error => {
+        console.log('Request failed', error);
       });
   };
 }

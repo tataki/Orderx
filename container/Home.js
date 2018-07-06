@@ -11,7 +11,7 @@ import { Content, Input, Button, Text } from 'native-base';
 import Modal from 'react-native-modalbox';
 import { connect } from 'react-redux';
 import { postTableNumber } from '../action/home';
-// import { postTable } from '../services/HomeService';
+// import { postTable } from '../services/api';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getCartFood } from '../action/category';
 
@@ -122,6 +122,7 @@ class Home extends React.Component {
               }}
               onChangeText={this.changeTableTextHandler}
               keyboardType="numeric"
+              underlineColorAndroid="transparent"
             />
             <TextInput
               placeholder="用餐人数"
@@ -134,6 +135,7 @@ class Home extends React.Component {
                 width: 100,
                 borderRadius: 15
               }}
+              underlineColorAndroid="transparent"
               onChangeText={this.changePeopleTextHandler}
               keyboardType="numeric"
             />

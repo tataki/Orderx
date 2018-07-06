@@ -1,5 +1,4 @@
-const apiPostFood = 'http://127.0.0.1:8000/v2/shopcarts/';
-const apiEmptyCart = 'http://127.0.0.1:8000/emptycart/';
+import { apiPostFood, apiEmptyCart } from '../services/api';
 
 export function addFood(data, num) {
   return {

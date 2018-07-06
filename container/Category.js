@@ -1,22 +1,42 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Content, List } from 'native-base';
-import { getCategory } from '../services/CategoryService';
+import { getCategory } from '../services/api';
 import CategoryItem from '../components/CategoryItem/';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import { getCartFood } from '../action/category';
+import { empty_Cart } from '../action/food';
+
 class Category extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: '菜品目录',
     headerRight: (
-      <View style={{ marginRight: 20 }}>
+      <View style={{ marginRight: 20, flexDirection: 'row' }}>
         <Icon
+          name="search"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Search');
+          }}
+        />
+        <Icon
+          style={{ marginLeft: 10 }}
           name="shopping-cart"
           size={30}
           color="#F5DEB3"
           onPress={() => {
             navigation.navigate('Cart');
+          }}
+        />
+        <Icon
+          style={{ marginLeft: 10 }}
+          name="wpforms"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Order');
           }}
         />
       </View>
@@ -43,6 +63,7 @@ class Category extends React.Component {
   }
   componentWillMount() {
     console.log('状态7');
+    this.props.emptycart();
   }
   constructor(props) {
     super(props);
@@ -90,6 +111,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   get_cart_food: table_id => {
     dispatch(getCartFood(table_id));
+  },
+  emptycart: () => {
+    dispatch(empty_Cart());
   }
 });
 

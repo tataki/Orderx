@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Dimensions } from 'react-native';
-import { getFood } from '../services/FoodsService';
+import { getFood } from '../services/api';
 import { connect } from 'react-redux';
 
 import {
@@ -19,19 +19,38 @@ import {
   Right
 } from 'native-base';
 import HTMLView from 'react-native-htmlview';
-import Iconx from 'react-native-vector-icons/FontAwesome';
 import { addFood, postAddFood } from '../action/food';
+import Iconx from 'react-native-vector-icons/FontAwesome';
+
 class FoodDetail extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.food.name,
     headerRight: (
-      <View style={{ marginRight: 20 }}>
+      <View style={{ marginRight: 20, flexDirection: 'row' }}>
         <Iconx
+          name="search"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Search');
+          }}
+        />
+        <Iconx
+          style={{ marginLeft: 10 }}
           name="shopping-cart"
           size={30}
           color="#F5DEB3"
           onPress={() => {
             navigation.navigate('Cart');
+          }}
+        />
+        <Iconx
+          style={{ marginLeft: 10 }}
+          name="wpforms"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Order');
           }}
         />
       </View>

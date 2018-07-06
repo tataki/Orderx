@@ -10,6 +10,8 @@ import Foods from '../container/Foods';
 import Home from '../container/Home';
 import FoodDetail from '../container/FoodDetail';
 import Cart from '../container/Cart';
+import Order from '../container/Order';
+import Search from '../container/Search';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // export default createBottomTabNavigator({
@@ -38,6 +40,12 @@ export default createStackNavigator(
     },
     Cart: {
       screen: Cart
+    },
+    Order: {
+      screen: Order
+    },
+    Search: {
+      screen: Search
     }
   },
   {

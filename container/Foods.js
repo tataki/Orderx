@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, Button } from 'react-native';
 import { Grid, Content, Col } from 'native-base';
-import { getFoods } from '../services/FoodsService';
+import { getFoods } from '../services/api';
 import FoodItem from '../components/FoodItem';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -9,13 +9,31 @@ export default class Foods extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: '菜品',
     headerRight: (
-      <View style={{ marginRight: 20 }}>
+      <View style={{ marginRight: 20, flexDirection: 'row' }}>
         <Icon
+          name="search"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Search');
+          }}
+        />
+        <Icon
+          style={{ marginLeft: 10 }}
           name="shopping-cart"
           size={30}
           color="#F5DEB3"
           onPress={() => {
             navigation.navigate('Cart');
+          }}
+        />
+        <Icon
+          style={{ marginLeft: 10 }}
+          name="wpforms"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Order');
           }}
         />
       </View>

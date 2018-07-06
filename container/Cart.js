@@ -20,9 +20,31 @@ import {
 } from 'native-base';
 import { connect } from 'react-redux';
 import { deleteFood, emptyCart } from '../action/food';
+import Iconx from 'react-native-vector-icons/FontAwesome';
 class Cart extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: '我的菜单'
+    title: '我的菜单',
+    headerRight: (
+      <View style={{ marginRight: 20, flexDirection: 'row' }}>
+        <Iconx
+          name="search"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Search');
+          }}
+        />
+        <Iconx
+          style={{ marginLeft: 10 }}
+          name="wpforms"
+          size={30}
+          color="#F5DEB3"
+          onPress={() => {
+            navigation.navigate('Order');
+          }}
+        />
+      </View>
+    )
   });
   constructor(props) {
     super(props);
@@ -32,6 +54,7 @@ class Cart extends Component {
   }
 
   componentWillMount() {
+    console.log('状态7');
     this.setState({
       foods: this.props.foods
     });
@@ -42,7 +65,9 @@ class Cart extends Component {
       food: item.food
     });
   }
-
+  checkout() {
+    this.props.navigation.navigate('CheckOut');
+  }
   removeItemPressed(item) {
     this.props.delete_Food(item.food, this.props.table);
   }
