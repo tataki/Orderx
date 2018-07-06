@@ -72,7 +72,11 @@ class Home extends React.Component {
     return (
       <Content>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Qr');
+            }}
+          >
             <View style={styles.container}>
               <Image
                 style={styles.img}

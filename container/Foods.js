@@ -11,7 +11,8 @@ export default class Foods extends React.Component {
     super(props);
     this.state = {
       category_id: 0,
-      foods: []
+      foods: [],
+      active: false
     };
   }
   renderFoods() {
@@ -55,7 +56,7 @@ export default class Foods extends React.Component {
       <Container>
         <Content>{this.renderFoods()}</Content>
         <Fab
-          action={this.props.active}
+          active={this.state.active}
           navigation={this.props.navigation}
           handstate={() => this.setState({ active: !this.state.active })}
         />

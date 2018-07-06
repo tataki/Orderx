@@ -4,6 +4,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome';
 export default class fabx extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
   render() {
     return (

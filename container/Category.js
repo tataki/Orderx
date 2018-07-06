@@ -19,7 +19,8 @@ class Category extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      active: false
     };
   }
 
@@ -51,7 +52,7 @@ class Category extends React.Component {
           </List>
         </Content>
         <Fab
-          action={this.props.active}
+          active={this.state.active}
           navigation={this.props.navigation}
           handstate={() => this.setState({ active: !this.state.active })}
         />

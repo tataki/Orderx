@@ -62,7 +62,8 @@ class FoodDetail extends React.Component {
     this.state = {
       food: this.props.navigation.state.params.food,
       food_num: 0,
-      teats: 0
+      teats: 0,
+      active: false
     };
   }
   componentWillMount() {
@@ -260,7 +261,7 @@ class FoodDetail extends React.Component {
           </View>
         </Content>
         <Fab
-          action={this.props.active}
+          active={this.state.active}
           navigation={this.props.navigation}
           handstate={() => this.setState({ active: !this.state.active })}
         />

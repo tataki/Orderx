@@ -1,4 +1,4 @@
-const host = 'http://127.0.0.1:8000';
+const host = 'http://192.168.123.61:8000';
 export const apiGetCategory = `${host}/v2/categorys/`;
 export const apiPostOrder = `${host}/v2/orders/`;
 export const apiGetFoods = `${host}/v2/categorys/`;
@@ -7,7 +7,17 @@ export const apiPostTalbe = `${host}/tables/`;
 export const apiGetOrder = `${host}/v2/orders/`;
 export const apiPostFood = `${host}/v2/shopcarts/`;
 export const apiEmptyCart = `${host}/emptycart/`;
+export const apiDoneOrder = `${host}/doneorder/`;
 
+export function doneOrder(table) {
+  return fetch(apiDoneOrder, {
+    body: JSON.stringify({ table_id: table }),
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    }
+  });
+}
 export const searchFood = function(name) {
   return fetch(apiGetFood + `?search=${name}`)
     .then(data => {

@@ -4,23 +4,18 @@ import {
   Container,
   Content,
   View,
-  Header,
   Icon,
   Button,
-  Left,
   Right,
   Body,
-  Title,
   List,
   ListItem,
   Thumbnail,
   Grid,
-  Col,
-  Colors
+  Col
 } from 'native-base';
 import { connect } from 'react-redux';
-import { getOrder } from '../services/api';
-import { State } from 'react-native-gesture-handler';
+import { getOrder, doneOrder } from '../services/api';
 class Order extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: '订单',
@@ -129,7 +124,11 @@ class Order extends Component {
               </Col>
               <Col style={{ paddingLeft: 5, paddingRight: 10 }}>
                 <Button
-                  onPress={() => this.props.navigation.navigate('Home')}
+                  onPress={() =>
+                    doneOrder(this.props.table).then(
+                      this.props.navigation.navigate('Home')
+                    )
+                  }
                   style={{
                     borderWidth: 1
                     // borderColor: Colors.navbarBackgroundColor

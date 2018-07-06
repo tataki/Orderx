@@ -12,6 +12,7 @@ import FoodDetail from '../container/FoodDetail';
 import Cart from '../container/Cart';
 import Order from '../container/Order';
 import Search from '../container/Search';
+import Qr from '../container/Qr';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // export default createBottomTabNavigator({
@@ -46,6 +47,9 @@ export default createStackNavigator(
     },
     Search: {
       screen: Search
+    },
+    Qr: {
+      screen: Qr
     }
   },
   {
