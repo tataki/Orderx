@@ -7,6 +7,16 @@ export const apiPostTalbe = `${host}/tables/`;
 export const apiGetOrder = `${host}/v2/orders/`;
 export const apiPostFood = `${host}/v2/shopcarts/`;
 export const apiEmptyCart = `${host}/emptycart/`;
+
+export const searchFood = function(name) {
+  return fetch(apiGetFood + `?search=${name}`)
+    .then(data => {
+      return data.json();
+    })
+    .then(data => {
+      return data;
+    });
+};
 export const getOrder = function(table_id) {
   return fetch(apiGetOrder + `?table_id=${table_id}&pay_status=paying`)
     .then(data => {

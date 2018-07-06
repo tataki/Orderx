@@ -7,10 +7,23 @@ import {
   Item,
   Input,
   Button,
-  Content
+  Content,
+  List,
+  ListItem,
+  Left,
+  Right,
+  Body,
+  Thumbnail
 } from 'native-base';
 import Iconx from 'react-native-vector-icons/FontAwesome';
+import { searchFood } from '../services/api';
 export default class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      food: []
+    };
+  }
   static navigationOptions = ({ navigator }) => ({
     title: '搜索',
     headerRight: (
@@ -36,17 +49,55 @@ export default class Search extends React.Component {
       </View>
     )
   });
+  changeT(name) {
+    searchFood(name).then(data => {
+      this.setState({ food: data });
+    });
+  }
   render() {
     return (
       <Container>
         <View style={{}}>
-          <Item style={{ width: 200 }}>
+          <Item>
             <Icon name="ios-search" />
-            <Input placeholder="请输入关键字" />
+            <Input
+              placeholder="请输入关键字"
+              onChangeText={name => this.changeT(name)}
+            />
           </Item>
         </View>
         <Content>
-          <Text>Search</Text>
+          <List
+            style={{ marginTop: 10 }}
+            dataArray={this.state.food}
+            renderRow={item => {
+              return (
+                <ListItem
+                  avatar
+                  style={{ height: 80 }}
+                  onPress={() => {
+                    this.props.navigation.navigate('FoodDetail', {
+                      food: item
+                    });
+                  }}
+                >
+                  <Left>
+                    <Thumbnail
+                      square
+                      source={{ uri: item.goods_front_image }}
+                    />
+                  </Left>
+                  <Body>
+                    <Text>{item.name}</Text>
+                    <Text>{item.goods_brief}</Text>
+                  </Body>
+                  <Right>
+                    <Text note>{item.shop_price} 元</Text>
+                  </Right>
+                </ListItem>
+              );
+            }}
+          />
         </Content>
       </Container>
     );
