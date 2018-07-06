@@ -80,9 +80,7 @@ class Home extends React.Component {
             <View style={styles.container}>
               <Image
                 style={styles.img}
-                source={{
-                  uri: 'http://upload.qianlong.com/2017/0705/1499216258932.jpg'
-                }}
+                source={require('../images/qr_img.jpg')}
               />
               <Text style={styles.text}>扫描二维码</Text>
             </View>
@@ -95,10 +93,7 @@ class Home extends React.Component {
             <View style={styles.container}>
               <Image
                 style={styles.img}
-                source={{
-                  uri:
-                    'http://img.zcool.cn/community/0145d7573e6e436ac7253f9adb4cbd.jpg@900w_1l_2o_100sh.jpg'
-                }}
+                source={require('../images/table_img.jpg')}
               />
               <Text style={styles.text}>输入桌号</Text>
             </View>
