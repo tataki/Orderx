@@ -97,6 +97,14 @@ class Order extends Component {
               style={{ fontSize: 38, color: '#95a5a6', marginBottom: 7 }}
             />
             <Text style={{ color: '#95a5a6' }}>订单列表为空</Text>
+            <Button
+              onPress={() => this.props.navigation.goBack()}
+              // style={{ backgroundColor: Colors.navbarBackgroundColor }}
+              block
+              style={{ width: 100, alignSelf: 'center', marginTop: 20 }}
+            >
+              <Text style={{ color: '#fdfdfd' }}> 返回</Text>
+            </Button>
           </View>
         ) : (
           <Content style={{ paddingRight: 10 }}>

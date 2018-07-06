@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import {
   Header,
   Icon,
@@ -13,7 +13,8 @@ import {
   Left,
   Right,
   Body,
-  Thumbnail
+  Thumbnail,
+  Text
 } from 'native-base';
 import Iconx from 'react-native-vector-icons/FontAwesome';
 import { searchFood } from '../services/api';
@@ -74,7 +75,7 @@ export default class Search extends React.Component {
               return (
                 <ListItem
                   avatar
-                  style={{ height: 80 }}
+                  style={{ marginTop: 10 }}
                   onPress={() => {
                     this.props.navigation.navigate('FoodDetail', {
                       food: item

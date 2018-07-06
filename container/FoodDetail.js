@@ -16,45 +16,45 @@ import {
   Left,
   Body,
   Title,
-  Right
+  Right,
+  Container
 } from 'native-base';
 import HTMLView from 'react-native-htmlview';
-import { addFood, postAddFood } from '../action/food';
-import Iconx from 'react-native-vector-icons/FontAwesome';
-
+import { postAddFood } from '../action/food';
+import Fab from '../components/fab';
 class FoodDetail extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.food.name,
-    headerRight: (
-      <View style={{ marginRight: 20, flexDirection: 'row' }}>
-        <Iconx
-          name="search"
-          size={30}
-          color="#F5DEB3"
-          onPress={() => {
-            navigation.navigate('Search');
-          }}
-        />
-        <Iconx
-          style={{ marginLeft: 10 }}
-          name="shopping-cart"
-          size={30}
-          color="#F5DEB3"
-          onPress={() => {
-            navigation.navigate('Cart');
-          }}
-        />
-        <Iconx
-          style={{ marginLeft: 10 }}
-          name="wpforms"
-          size={30}
-          color="#F5DEB3"
-          onPress={() => {
-            navigation.navigate('Order');
-          }}
-        />
-      </View>
-    )
+    title: navigation.state.params.food.name
+    // headerRight: (
+    //   <View style={{ marginRight: 20, flexDirection: 'row' }}>
+    //     <Iconx
+    //       name="search"
+    //       size={30}
+    //       color="#F5DEB3"
+    //       onPress={() => {
+    //         navigation.navigate('Search');
+    //       }}
+    //     />
+    //     <Iconx
+    //       style={{ marginLeft: 10 }}
+    //       name="shopping-cart"
+    //       size={30}
+    //       color="#F5DEB3"
+    //       onPress={() => {
+    //         navigation.navigate('Cart');
+    //       }}
+    //     />
+    //     <Iconx
+    //       style={{ marginLeft: 10 }}
+    //       name="wpforms"
+    //       size={30}
+    //       color="#F5DEB3"
+    //       onPress={() => {
+    //         navigation.navigate('Order');
+    //       }}
+    //     />
+    //   </View>
+    // )
   });
 
   constructor(props) {
@@ -102,162 +102,169 @@ class FoodDetail extends React.Component {
   }
   render() {
     return (
-      <Content>
-        <View>
-          <Image
-            source={{ uri: this.state.food.goods_front_image }}
-            style={{
-              height: 250,
-              width: Dimensions.get('window').width,
-              resizeMode: 'cover'
-            }}
-          />
-        </View>
-        <View
-          style={{
-            backgroundColor: '#fdfdfd',
-            paddingTop: 10,
-            paddingBottom: 10,
-            paddingLeft: 12,
-            paddingRight: 12,
-            alignItems: 'center'
-          }}
-        >
-          <Grid>
-            <Col size={3}>
-              <Text style={{ fontSize: 18 }}>售价</Text>
-            </Col>
-            <Col>
-              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-                {this.state.food.shop_price}元
-              </Text>
-            </Col>
-          </Grid>
-          <Grid style={{ marginTop: 15 }}>
-            <Col>
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text>口味:</Text>
-              </View>
-            </Col>
-            <Col size={3}>
-              <Picker
-                renderHeader={backAction => (
-                  <Header style={{ backgroundColor: '#f44242' }}>
-                    <Left>
-                      <Button transparent onPress={backAction}>
-                        <Icon name="arrow-back" style={{ color: '#fff' }} />
-                      </Button>
-                    </Left>
-                    <Body style={{ flex: 3 }}>
-                      <Title style={{ color: '#fff' }}>选择您的口味</Title>
-                    </Body>
-                    <Right />
-                  </Header>
-                )}
-                iosHeader="选择您的口味"
-                mode="dropdown"
-                placeholder="选择口味"
-                note={true}
-                selectedValue={this.state.teats}
-                onValueChange={val => {
-                  this.setState({ teats: val });
-                }}
-              >
-                {this.renderTaste()}
-              </Picker>
-            </Col>
-          </Grid>
-          <Grid>
-            <Col>
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text>数量:</Text>
-              </View>
-            </Col>
-            <Col size={3}>
-              <View style={{ flex: 1, flexDirection: 'row' }}>
-                <Button
-                  icon
-                  light
-                  onPress={() => {
-                    this.setState({
-                      food_num:
-                        this.state.food_num > 1 ? this.state.food_num - 1 : 0
-                    });
-                  }}
-                >
-                  <Icon name="ios-remove-outline" />
-                </Button>
-                <View
-                  style={{
-                    flex: 4,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingLeft: 30,
-                    paddingRight: 30
-                  }}
-                >
-                  <Text style={{ fontSize: 18 }}>{this.state.food_num}</Text>
-                </View>
-                <Button
-                  icon
-                  light
-                  onPress={() => {
-                    this.setState({
-                      food_num: this.state.food_num + 1
-                    });
-                  }}
-                >
-                  <Icon name="ios-add" />
-                </Button>
-              </View>
-            </Col>
-          </Grid>
-          <Grid style={{ marginTop: 15 }}>
-            <Col size={3}>
-              <Button
-                block
-                onPress={() => {
-                  if (this.state.food_num > 0) {
-                    this.props.add_Food(
-                      this.state.food,
-                      this.state.food_num,
-                      this.props.table_id
-                    );
-                    alert('添加成功~');
-                  } else {
-                    alert('数量不正确！');
-                  }
-                }}
-              >
-                <Text style={{ color: '#fdfdfd', marginLeft: 5 }}>
-                  添加进我的菜单
-                </Text>
-              </Button>
-            </Col>
-          </Grid>
-        </View>
-        <View
-          style={{
-            marginTop: 15,
-            padding: 10,
-            borderWidth: 1,
-            borderRadius: 3,
-            borderColor: 'rgba(149, 165, 166, 0.3)'
-          }}
-        >
-          <Text style={{ marginBottom: 5 }}>描述</Text>
+      <Container>
+        <Content>
+          <View>
+            <Image
+              source={{ uri: this.state.food.goods_front_image }}
+              style={{
+                height: 250,
+                width: Dimensions.get('window').width,
+                resizeMode: 'cover'
+              }}
+            />
+          </View>
           <View
             style={{
-              width: 50,
-              height: 1,
-              backgroundColor: 'rgba(44, 62, 80, 0.5)',
-              marginLeft: 7,
-              marginBottom: 10
+              backgroundColor: '#fdfdfd',
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 12,
+              paddingRight: 12,
+              alignItems: 'center'
             }}
-          />
-          <HTMLView value={this.state.food.goods_desc} />
-        </View>
-      </Content>
+          >
+            <Grid>
+              <Col size={3}>
+                <Text style={{ fontSize: 18 }}>售价</Text>
+              </Col>
+              <Col>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+                  {this.state.food.shop_price}元
+                </Text>
+              </Col>
+            </Grid>
+            <Grid style={{ marginTop: 15 }}>
+              <Col>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                  <Text>口味:</Text>
+                </View>
+              </Col>
+              <Col size={3}>
+                <Picker
+                  renderHeader={backAction => (
+                    <Header style={{ backgroundColor: '#f44242' }}>
+                      <Left>
+                        <Button transparent onPress={backAction}>
+                          <Icon name="arrow-back" style={{ color: '#fff' }} />
+                        </Button>
+                      </Left>
+                      <Body style={{ flex: 3 }}>
+                        <Title style={{ color: '#fff' }}>选择您的口味</Title>
+                      </Body>
+                      <Right />
+                    </Header>
+                  )}
+                  iosHeader="选择您的口味"
+                  mode="dropdown"
+                  placeholder="选择口味"
+                  note={true}
+                  selectedValue={this.state.teats}
+                  onValueChange={val => {
+                    this.setState({ teats: val });
+                  }}
+                >
+                  {this.renderTaste()}
+                </Picker>
+              </Col>
+            </Grid>
+            <Grid>
+              <Col>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                  <Text>数量:</Text>
+                </View>
+              </Col>
+              <Col size={3}>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  <Button
+                    icon
+                    light
+                    onPress={() => {
+                      this.setState({
+                        food_num:
+                          this.state.food_num > 1 ? this.state.food_num - 1 : 0
+                      });
+                    }}
+                  >
+                    <Icon name="ios-remove-outline" />
+                  </Button>
+                  <View
+                    style={{
+                      flex: 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      paddingLeft: 30,
+                      paddingRight: 30
+                    }}
+                  >
+                    <Text style={{ fontSize: 18 }}>{this.state.food_num}</Text>
+                  </View>
+                  <Button
+                    icon
+                    light
+                    onPress={() => {
+                      this.setState({
+                        food_num: this.state.food_num + 1
+                      });
+                    }}
+                  >
+                    <Icon name="ios-add" />
+                  </Button>
+                </View>
+              </Col>
+            </Grid>
+            <Grid style={{ marginTop: 15 }}>
+              <Col size={3}>
+                <Button
+                  block
+                  onPress={() => {
+                    if (this.state.food_num > 0) {
+                      this.props.add_Food(
+                        this.state.food,
+                        this.state.food_num,
+                        this.props.table_id
+                      );
+                      alert('添加成功~');
+                    } else {
+                      alert('数量不正确！');
+                    }
+                  }}
+                >
+                  <Text style={{ color: '#fdfdfd', marginLeft: 5 }}>
+                    添加进我的菜单
+                  </Text>
+                </Button>
+              </Col>
+            </Grid>
+          </View>
+          <View
+            style={{
+              marginTop: 15,
+              padding: 10,
+              borderWidth: 1,
+              borderRadius: 3,
+              borderColor: 'rgba(149, 165, 166, 0.3)'
+            }}
+          >
+            <Text style={{ marginBottom: 5 }}>描述</Text>
+            <View
+              style={{
+                width: 50,
+                height: 1,
+                backgroundColor: 'rgba(44, 62, 80, 0.5)',
+                marginLeft: 7,
+                marginBottom: 10
+              }}
+            />
+            <HTMLView value={this.state.food.goods_desc} />
+          </View>
+        </Content>
+        <Fab
+          action={this.props.active}
+          navigation={this.props.navigation}
+          handstate={() => this.setState({ active: !this.state.active })}
+        />
+      </Container>
     );
   }
 }

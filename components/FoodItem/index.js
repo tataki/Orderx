@@ -56,7 +56,7 @@ export default class FoodItem extends Component {
 }
 
 const style = StyleSheet.create({
-  button: { flex: 1, height: 250, paddingLeft: 4, paddingRight: 4 },
+  button: { flex: 1, height: 250 },
   image: { height: 250, width: null, flex: 1 },
   leftMargin: {
     marginLeft: 7,

@@ -18,7 +18,7 @@ export const searchFood = function(name) {
     });
 };
 export const getOrder = function(table_id) {
-  return fetch(apiGetOrder + `?table_id=${table_id}&pay_status=paying`)
+  return fetch(apiGetOrder + `?table=${table_id}&pay_status=paying`)
     .then(data => {
       return data.json();
     })

@@ -1,43 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
-import { Grid, Content, Col } from 'native-base';
+import { Grid, Content, Col, Container } from 'native-base';
 import { getFoods } from '../services/api';
 import FoodItem from '../components/FoodItem';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Fab from '../components/fab';
 export default class Foods extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: '菜品',
-    headerRight: (
-      <View style={{ marginRight: 20, flexDirection: 'row' }}>
-        <Icon
-          name="search"
-          size={30}
-          color="#F5DEB3"
-          onPress={() => {
-            navigation.navigate('Search');
-          }}
-        />
-        <Icon
-          style={{ marginLeft: 10 }}
-          name="shopping-cart"
-          size={30}
-          color="#F5DEB3"
-          onPress={() => {
-            navigation.navigate('Cart');
-          }}
-        />
-        <Icon
-          style={{ marginLeft: 10 }}
-          name="wpforms"
-          size={30}
-          color="#F5DEB3"
-          onPress={() => {
-            navigation.navigate('Order');
-          }}
-        />
-      </View>
-    )
+    title: '菜品'
   });
   constructor(props) {
     super(props);
@@ -83,6 +51,15 @@ export default class Foods extends React.Component {
   }
   render() {
     console.log(this.state.foods);
-    return <Content>{this.renderFoods()}</Content>;
+    return (
+      <Container>
+        <Content>{this.renderFoods()}</Content>
+        <Fab
+          action={this.props.active}
+          navigation={this.props.navigation}
+          handstate={() => this.setState({ active: !this.state.active })}
+        />
+      </Container>
+    );
   }
 }
