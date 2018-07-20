@@ -25,7 +25,7 @@ export default class Search extends React.Component {
       food: []
     };
   }
-  static navigationOptions = ({ navigator }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: '搜索',
     headerRight: (
       <View style={{ marginRight: 20, flexDirection: 'row' }}>

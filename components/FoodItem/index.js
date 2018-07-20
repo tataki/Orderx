@@ -89,6 +89,6 @@ const style = StyleSheet.create({
     height: 1,
     backgroundColor: '#7f8c8d',
     position: 'absolute',
-    top: '52%'
+    top: '45%'
   }
 });

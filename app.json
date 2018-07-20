@@ -17,11 +17,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.test.www",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.test.www"
     }
   }
 }

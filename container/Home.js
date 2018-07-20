@@ -76,6 +76,7 @@ class Home extends React.Component {
             onPress={() => {
               this.props.navigation.navigate('Qr');
             }}
+            activeOpacity={0.9}
           >
             <View style={styles.container}>
               <Image
@@ -89,6 +90,7 @@ class Home extends React.Component {
             onPress={() => {
               this.refs.inputModal.open();
             }}
+            activeOpacity={0.9}
           >
             <View style={styles.container}>
               <Image

@@ -1,4 +1,5 @@
 const host = 'http://47.98.52.61:8000';
+// const host = 'http://192.168.123.61:8000';
 export const apiGetCategory = `${host}/v2/categorys/`;
 export const apiPostOrder = `${host}/v2/orders/`;
 export const apiGetFoods = `${host}/v2/categorys/`;

@@ -61,7 +61,8 @@ export default createStackNavigator(
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
       }
     }
   }

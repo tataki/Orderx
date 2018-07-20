@@ -9,8 +9,7 @@ import { empty_Cart } from '../action/food';
 import Fab from '../components/fab';
 class Category extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: '菜品目录',
-    headerLeft: <View />
+    title: '菜品目录'
   });
 
   componentWillMount() {
